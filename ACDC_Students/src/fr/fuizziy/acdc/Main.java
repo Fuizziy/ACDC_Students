@@ -7,7 +7,7 @@ public class Main {
 	
 	public static File save;
 	
-	public static void main(String[] args) throws IOException { 
+	public static void main(String[] args) throws IOException {  
 		System.out.println("WELCOME. How will you annoy the sups today ?");  
 		save = new File("scores.txt"); 
 		if (save.createNewFile() || save.length() == 0) {
@@ -16,6 +16,7 @@ public class Main {
 			return;
 		}
 		Student.load_students(save); 
+		
 		Student.save_students(save);
 	} 
 	

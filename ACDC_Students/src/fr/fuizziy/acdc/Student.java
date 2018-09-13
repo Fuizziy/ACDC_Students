@@ -7,12 +7,14 @@ import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.util.HashSet;
-import java.util.Set;
+import java.util.HashMap; 
+import java.util.Map; 
 
 public class Student {
 
-	public static Set<Student> students_class = new HashSet<Student>(); 
+	public static String[] penalty_desc = new String[]
+			{ "EXC:", "ABS:", "RET:", "FLR:", "MVN:", "MVC:" };
+	public static Map<String, Student> students_class = new HashMap<String, Student>(); 
 	public static void load_students(File file) throws IOException {
 		FileReader file_reader = new FileReader(file);
 		BufferedReader bufferedReader = new BufferedReader(file_reader); 
@@ -35,7 +37,7 @@ public class Student {
 		FileWriter fw = new FileWriter(file.getName(), true); 
 	    BufferedWriter bw = new BufferedWriter(fw); 
 	    PrintWriter pw = new PrintWriter(bw);
-	    for (Student student : students_class)
+	    for (Student student : students_class.values())
 	    	student.save(pw);
 	    pw.close();
 	    bw.close();
@@ -52,12 +54,15 @@ public class Student {
 		this.good_answers = good_answers; 
 		this.asked_times = asked_times;
 		this.penalties = parse_penalties(str_penalty);
-		students_class.add(this);
-		this.answer(true);
+		students_class.put(this.login, this);  
+	}
+	
+	public void add_penalty(int i) {
+		penalties[i]++;
 	}
 	
 	public int[] parse_penalties(String str) {
-		int[] result = new int[4]; 
+		int[] result = new int[penalty_desc.length]; 
 		int index = 0;
 		for (String digit : str.replaceAll("[^,0-9]", "").split(",")){
 			result[index++] = Integer.parseInt(digit);
@@ -67,8 +72,8 @@ public class Student {
 	
 	public String convert_penalties() {
 		String result = "[";
-		for (int i : penalties)
-			result += i + ",";
+		for (int i = 0; i < penalties.length; i++)
+			result += penalty_desc[i] + penalties[i] + ",";
 		return result + "]";
 	}
 	
