@@ -13,7 +13,7 @@ import java.util.Map;
 public class Student {
 
 	public static String[] penalty_desc = new String[]
-			{ "EXC:", "ABS:", "RET:", "FLR:", "MVN:", "MVC:" };
+			{ "EXC:", "ABS:", "RET:", "FLR:", "MVC:" };
 	public static Map<String, Student> students_class = new HashMap<String, Student>(); 
 	public static void load_students(File file) throws IOException {
 		FileReader file_reader = new FileReader(file);
@@ -34,6 +34,7 @@ public class Student {
 	}
 	public static void save_students(File file) throws IOException {
 		new PrintWriter(file).close();
+		System.out.println("saving students...");
 		FileWriter fw = new FileWriter(file.getName(), true); 
 	    BufferedWriter bw = new BufferedWriter(fw); 
 	    PrintWriter pw = new PrintWriter(bw);
@@ -98,6 +99,7 @@ public class Student {
 	}
 	
 	public void save(PrintWriter pw) {
+		System.out.println(this.toString());
 		pw.println(this.toString());
 	}
 }
