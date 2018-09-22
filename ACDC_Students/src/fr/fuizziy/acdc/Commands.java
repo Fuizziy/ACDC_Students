@@ -3,9 +3,9 @@ package fr.fuizziy.acdc;
 public class Commands {
 
 	public enum Sanction{
-		LATE(1),
+		KICKED_OUT(1),
 		MISSING(2),
-		KICKED_OUT(3),
+		LATE(3),
 		FAIL_PUSH(4), 
 		BEHAVIOR(5);
 		

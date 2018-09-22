@@ -1,1 +1,4 @@
-marc.villain 12 9 [EXC:1,ABS:1,RET:0,FLR:1,MVC:0,]
+mathias.latepu 2 1 [EXC:0,ABS:0,RET:0,FLR:0,MVC:1,]
+marc.villain 0 0 [EXC:0,ABS:0,RET:0,FLR:0,MVC:0,]
+bobby.bleu 1 0 [EXC:0,ABS:0,RET:0,FLR:0,MVC:1,]
+anto.girondin 6 5 [EXC:1,ABS:0,RET:0,FLR:0,MVC:0,]

@@ -45,7 +45,7 @@ public class Student {
 	    fw.close();
 	}
 	
-	private String login;
+	public String login;
 	private short asked_times, good_answers;
 	public int[] penalties;
 	
@@ -80,7 +80,8 @@ public class Student {
 	
 	public String format() {
 		return this.login + " with " + good_answers + "/" +
-	asked_times + " (" + this.good_answers * 100 / this.asked_times + "%)";
+	asked_times + " (" + (this.good_answers) * 100 
+	/ (this.asked_times != 0 ? this.asked_times : 1) + "%)";
 	}
 	
 	public void answer(boolean right) {

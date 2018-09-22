@@ -7,7 +7,7 @@ import java.util.Scanner;
 public class Main {
 	
 	public static File save;
- 
+	
 	public static void main(String[] args) throws IOException {  
 		System.out.println("WELCOME. How will you annoy the sups today ?");  
 		save = new File("scores.txt"); 
@@ -16,6 +16,7 @@ public class Main {
 			System.out.println("Please configure it and come back.");
 			return;
 		}
+		Questions.Quest.instanciate();
 		Student.load_students(save);   
 		Scanner scanner = new Scanner(System.in);
 		String cmd;
@@ -27,8 +28,8 @@ public class Main {
 			if (cmd.replaceAll(" ", "").length() == 0) {
 				Commands.help();
 				System.out.print("\nCommand: ");
-				continue;
-			}
+				continue; 
+			} 
 			switch (options[0]) {
 				case "save": 
 					Student.save_students(save);
@@ -48,6 +49,20 @@ public class Main {
 						break;
 					} 
 					Commands.apply_sanction(options);
+					break;
+				case "q":
+				case "question":
+					if (options.length == 3) {
+						Student.students_class.get(options[1]).answer(options[2].equals("ok"));
+						System.out.println(options[2].equals("ok") ? "Answered RIGHT !" : "Answered WRONG");
+						System.out.println(Student.students_class.get(options[1]).format());
+					} else {
+						Questions.Quest.generate(); 
+					}
+					break;
+				case "format":
+					if (options.length == 2 && Student.students_class.containsKey(options[1]))
+						System.out.println(Student.students_class.get(options[1]).format());
 					break;
 				default:
 					System.out.println("Invalid command");
